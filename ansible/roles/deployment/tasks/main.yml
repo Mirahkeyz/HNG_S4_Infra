@@ -1,0 +1,16 @@
+- name: Clone application repository
+  git:
+    repo: https://github.com/Mirahkeyz/DevOps-Stage-4.git
+    dest: /home/ubuntu/app
+    version: main
+    depth: 1
+
+- name: Copy .env file
+  copy:
+    src: files/.env
+    dest: /home/ubuntu/app/.env
+
+- name: Run Docker Compose
+  command: docker-compose up -d
+  args:
+    chdir: /home/ubuntu/app
